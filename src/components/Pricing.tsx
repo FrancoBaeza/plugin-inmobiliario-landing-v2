@@ -12,6 +12,9 @@ const Pricing = () => {
   const { plans, loading, error } = usePricingData();
 
   const formatCurrency = (amount: number, currency: string) => {
+    if (!currency) {
+      currency = 'USD';
+    }
     return new Intl.NumberFormat(i18n.language === 'es' ? 'es-ES' : 'en-US', {
       style: 'currency',
       currency: currency,
@@ -122,7 +125,7 @@ const Pricing = () => {
                       {t('pricing.features')}:
                     </div>
                     <ul className="space-y-2">
-                      {plan.features.map((feature: string, idx: number) => (
+                      {plan?.features?.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-start">
                           <svg
                             className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
