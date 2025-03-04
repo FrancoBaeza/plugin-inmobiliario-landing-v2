@@ -61,5 +61,106 @@
     "copyright": "© 2025 MatchFloor. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions"
+  },
+  "subscription": {
+    "pageTitle": "Subscribe to MatchFloor",
+    "pageDescription": "Join MatchFloor and transform your real estate business with our powerful platform.",
+    "pageHeading": "Join MatchFloor Today",
+    "pageSubheading": "Complete the steps below to create your account and start using our platform.",
+    
+    "steps": {
+      "basicInfo": "Basic Info",
+      "agencyDetails": "Agency Details",
+      "review": "Review",
+      "verification": "Verification"
+    },
+    
+    "common": {
+      "nextButton": "Next",
+      "backButton": "Back",
+      "required": "Required"
+    },
+    
+    "basicInfo": {
+      "title": "Create Your Account",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your password",
+      "passwordStrength": "Password Strength",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong"
+    },
+    
+    "agencyDetails": {
+      "title": "Tell Us About Your Agency",
+      "agencyName": "Agency Name",
+      "agencyNamePlaceholder": "Enter your agency name",
+      "address": "Address",
+      "addressPlaceholder": "Enter your agency address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number",
+      "website": "Website",
+      "websitePlaceholder": "Enter your website URL"
+    },
+    
+    "review": {
+      "title": "Review Your Subscription",
+      "personalInfo": "Personal Information",
+      "agencyInfo": "Agency Information",
+      "planInfo": "Plan Information",
+      "planName": "Plan",
+      "billingCycle": "Billing Cycle",
+      "price": "Price",
+      "features": "Features",
+      "confirmButton": "Confirm & Subscribe",
+      "processing": "Processing..."
+    },
+    
+    "verification": {
+      "title": "Verify Your Email",
+      "instructions": "We've sent a verification code to your email address:",
+      "verificationCode": "Verification Code",
+      "codePlaceholder": "Enter the 6-digit code",
+      "verifyButton": "Verify Email",
+      "verifying": "Verifying...",
+      "resendButton": "Resend Code",
+      "resending": "Sending...",
+      "codeSent": "Verification code has been sent to your email",
+      "codeRequired": "Verification code is required",
+      "selectedPlan": "Selected Plan",
+      "successTitle": "Email Verified Successfully!",
+      "successMessage": "Thank you for verifying your email. Your account has been created successfully.",
+      "nextSteps": "You will receive an email with next steps to complete your subscription.",
+      "returnToHome": "Return to Home"
+    },
+    
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordsDontMatch": "Passwords don't match",
+      "agencyNameRequired": "Agency name is required",
+      "cardNumberRequired": "Card number is required",
+      "invalidCardNumber": "Please enter a valid card number",
+      "cardholderNameRequired": "Cardholder name is required",
+      "expiryDateRequired": "Expiry date is required",
+      "invalidExpiryFormat": "Please use MM/YY format",
+      "invalidMonth": "Invalid month",
+      "cardExpired": "Card has expired",
+      "cvvRequired": "CVV is required",
+      "invalidCvv": "Invalid CVV",
+      "billingAddressRequired": "Billing address is required",
+      "submissionFailed": "There was an error processing your subscription. Please try again.",
+      "noPlanSelected": "No plan selected. Please select a plan to continue.",
+      "resendFailed": "Failed to resend verification code. Please try again."
+    }
   }
 } 

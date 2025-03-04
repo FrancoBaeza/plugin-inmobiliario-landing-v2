@@ -1,41 +1,18 @@
-import { useEffect } from 'react'
-import '../src/i18n/i18n'
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n/index';
+import AppRoutes from './routes';
+import './index.css';
 
-// Components
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import WhatWeDo from './components/WhatWeDo'
-import Benefits from './components/Benefits'
-import VideoDemo from './components/VideoDemo'
-import Pricing from './components/Pricing'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-
-function App() {
-  useEffect(() => {
-    // Smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth'
-
-    return () => {
-      document.documentElement.style.scrollBehavior = ''
-    }
-  }, [])
-
+const App: React.FC = () => {
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: 'var(--color-background)'
-    }}>
-      <Navbar />
-      <Hero />
-      <WhatWeDo />
-      <Benefits />
-      <VideoDemo />
-      <Pricing />
-      <Contact />
-      <Footer />
-    </div>
-  )
-}
+    <I18nextProvider i18n={i18n}>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </I18nextProvider>
+  );
+};
 
-export default App
+export default App;

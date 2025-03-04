@@ -61,5 +61,106 @@
     "copyright": "© 2025 MatchFloor. Todos los derechos reservados.",
     "privacy": "Política de Privacidad",
     "terms": "Términos y Condiciones"
+  },
+  "subscription": {
+    "pageTitle": "Suscríbete a MatchFloor",
+    "pageDescription": "Únete a MatchFloor y transforma tu negocio inmobiliario con nuestra potente plataforma.",
+    "pageHeading": "Únete a MatchFloor Hoy",
+    "pageSubheading": "Completa los pasos a continuación para crear tu cuenta y comenzar a usar nuestra plataforma.",
+    
+    "steps": {
+      "basicInfo": "Información Básica",
+      "agencyDetails": "Detalles de Agencia",
+      "review": "Revisión",
+      "verification": "Verificación"
+    },
+    
+    "common": {
+      "nextButton": "Siguiente",
+      "backButton": "Atrás",
+      "required": "Obligatorio"
+    },
+    
+    "basicInfo": {
+      "title": "Crea Tu Cuenta",
+      "name": "Nombre Completo",
+      "namePlaceholder": "Ingresa tu nombre completo",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "Ingresa tu correo electrónico",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Crea una contraseña",
+      "passwordConfirmation": "Confirmar Contraseña",
+      "passwordConfirmationPlaceholder": "Confirma tu contraseña",
+      "passwordStrength": "Fortaleza de Contraseña",
+      "weak": "Débil",
+      "medium": "Media",
+      "strong": "Fuerte"
+    },
+    
+    "agencyDetails": {
+      "title": "Cuéntanos Sobre Tu Agencia",
+      "agencyName": "Nombre de la Agencia",
+      "agencyNamePlaceholder": "Ingresa el nombre de tu agencia",
+      "address": "Dirección",
+      "addressPlaceholder": "Ingresa la dirección de tu agencia",
+      "phone": "Número de Teléfono",
+      "phonePlaceholder": "Ingresa tu número de teléfono",
+      "website": "Sitio Web",
+      "websitePlaceholder": "Ingresa la URL de tu sitio web"
+    },
+    
+    "review": {
+      "title": "Revisa Tu Suscripción",
+      "personalInfo": "Información Personal",
+      "agencyInfo": "Información de la Agencia",
+      "planInfo": "Información del Plan",
+      "planName": "Plan",
+      "billingCycle": "Ciclo de Facturación",
+      "price": "Precio",
+      "features": "Características",
+      "confirmButton": "Confirmar y Suscribirse",
+      "processing": "Procesando..."
+    },
+    
+    "verification": {
+      "title": "Verifica Tu Correo Electrónico",
+      "instructions": "Hemos enviado un código de verificación a tu correo electrónico:",
+      "verificationCode": "Código de Verificación",
+      "codePlaceholder": "Ingresa el código de 6 dígitos",
+      "verifyButton": "Verificar Correo",
+      "verifying": "Verificando...",
+      "resendButton": "Reenviar Código",
+      "resending": "Enviando...",
+      "codeSent": "El código de verificación ha sido enviado a tu correo",
+      "codeRequired": "El código de verificación es obligatorio",
+      "selectedPlan": "Plan Seleccionado",
+      "successTitle": "¡Correo Verificado Exitosamente!",
+      "successMessage": "Gracias por verificar tu correo electrónico. Tu cuenta ha sido creada con éxito.",
+      "nextSteps": "Recibirás un correo con los siguientes pasos para completar tu suscripción.",
+      "returnToHome": "Volver al Inicio"
+    },
+    
+    "errors": {
+      "nameRequired": "El nombre es obligatorio",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "invalidEmail": "Por favor, ingresa un correo electrónico válido",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+      "passwordsDontMatch": "Las contraseñas no coinciden",
+      "agencyNameRequired": "El nombre de la agencia es obligatorio",
+      "cardNumberRequired": "El número de tarjeta es obligatorio",
+      "invalidCardNumber": "Por favor, ingresa un número de tarjeta válido",
+      "cardholderNameRequired": "El nombre del titular es obligatorio",
+      "expiryDateRequired": "La fecha de vencimiento es obligatoria",
+      "invalidExpiryFormat": "Por favor, usa el formato MM/AA",
+      "invalidMonth": "Mes inválido",
+      "cardExpired": "La tarjeta ha expirado",
+      "cvvRequired": "El CVV es obligatorio",
+      "invalidCvv": "CVV inválido",
+      "billingAddressRequired": "La dirección de facturación es obligatoria",
+      "submissionFailed": "Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.",
+      "noPlanSelected": "No se ha seleccionado ningún plan. Por favor, selecciona un plan para continuar.",
+      "resendFailed": "Error al reenviar el código de verificación. Por favor, inténtalo de nuevo."
+    }
   }
 } 
