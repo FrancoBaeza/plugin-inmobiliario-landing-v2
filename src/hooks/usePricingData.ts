@@ -23,7 +23,16 @@ export const usePricingData = () => {
         setLoading(true);
         // In a real scenario, this would be the actual API endpoint
         const response = await axios.get('https://matchfloor.com/api/plans/public');
-        setPlans(response.data);
+        
+        // Check if the response has a data property that contains the plans
+        const plansData = response.data?.data || response.data;
+        
+        if (Array.isArray(plansData)) {
+          setPlans(plansData);
+        } else {
+          throw new Error('Invalid data format received from API');
+        }
+        
         setError(null);
       } catch (err) {
         console.error('Error fetching pricing data:', err);

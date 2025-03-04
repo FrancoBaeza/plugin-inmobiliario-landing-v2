@@ -7,7 +7,7 @@ interface AnimationOptions {
 }
 
 export const useAnimateOnScroll = <T extends HTMLElement>(
-  ref: RefObject<T>,
+  ref: RefObject<T | null>,
   options: AnimationOptions = {}
 ) => {
   const [isVisible, setIsVisible] = useState(false);

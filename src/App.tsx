@@ -22,7 +22,10 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: 'var(--color-background)'
+    }}>
       <Navbar />
       <Hero />
       <WhatWeDo />

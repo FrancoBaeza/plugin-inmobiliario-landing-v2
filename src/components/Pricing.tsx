@@ -12,12 +12,9 @@ const Pricing = () => {
   const { plans, loading, error } = usePricingData();
 
   const formatCurrency = (amount: number, currency: string) => {
-    // Ensure currency is a valid string, default to 'USD' if not provided
-    const currencyCode = currency && currency.trim() ? currency : 'USD';
-    
     return new Intl.NumberFormat(i18n.language === 'es' ? 'es-ES' : 'en-US', {
       style: 'currency',
-      currency: currencyCode,
+      currency: currency,
       minimumFractionDigits: 0,
     }).format(amount);
   };
@@ -85,7 +82,7 @@ const Pricing = () => {
           </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-8">
-            {plans?.data.map((plan, index) => (
+            {plans.map((plan: PricingPlan, index: number) => (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -125,7 +122,7 @@ const Pricing = () => {
                       {t('pricing.features')}:
                     </div>
                     <ul className="space-y-2">
-                      {/* {plan.features.map((feature, idx) => (
+                      {plan.features.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-start">
                           <svg
                             className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
@@ -143,7 +140,7 @@ const Pricing = () => {
                           </svg>
                           <span className="text-gray-600">{feature}</span>
                         </li>
-                      ))} */}
+                      ))}
                     </ul>
                   </div>
                   <a
