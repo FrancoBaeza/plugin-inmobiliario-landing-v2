@@ -1,0 +1,65 @@
+{
+  "header": {
+    "title": "Revoluciona la Gestión de Tu Inmobiliaria",
+    "subtitle": "Optimiza la relación con tus agentes y potencia tus resultados.",
+    "cta": "Solicitar Demo"
+  },
+  "nav": {
+    "home": "Inicio",
+    "whatWeDo": "Qué Hacemos",
+    "benefits": "Beneficios",
+    "demo": "Demo",
+    "pricing": "Precios",
+    "contact": "Contacto"
+  },
+  "whatWeDo": {
+    "title": "Qué Hacemos",
+    "description": "MatchFloor es un plugin para inmobiliarias que optimiza la gestión de visitas a propiedades. Nuestra solución permite a los agentes inmobiliarios coordinar visitas de manera eficiente, reducir tiempos muertos y mejorar la experiencia del cliente.",
+    "step1": "Integración sencilla con tu sitio web",
+    "step2": "Gestión de citas en tiempo real",
+    "step3": "Seguimiento de visitas y resultados",
+    "step4": "Análisis de rendimiento de agentes"
+  },
+  "benefits": {
+    "title": "Beneficios",
+    "efficiency": {
+      "title": "Aumento de eficiencia 🏡",
+      "description": "Reduce el tiempo dedicado a la coordinación de visitas en un 40%"
+    },
+    "experience": {
+      "title": "Mejor experiencia para clientes 🤝",
+      "description": "Proceso de reserva de visitas intuitivo y sin fricciones"
+    },
+    "integration": {
+      "title": "Integración sencilla con tu sitio 🔌",
+      "description": "Implementación en menos de 24 horas sin interrupciones"
+    },
+    "analytics": {
+      "title": "Analítica avanzada 📊",
+      "description": "Datos en tiempo real sobre el rendimiento de tus agentes"
+    }
+  },
+  "demo": {
+    "title": "Mira cómo funciona",
+    "description": "Descubre cómo MatchFloor puede transformar la gestión de visitas en tu inmobiliaria"
+  },
+  "pricing": {
+    "title": "Planes y Precios",
+    "description": "Elige el plan que mejor se adapte a las necesidades de tu inmobiliaria",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "save": "Ahorra",
+    "features": "Características",
+    "cta": "Comenzar ahora"
+  },
+  "contact": {
+    "title": "¿Listo para revolucionar tu inmobiliaria?",
+    "description": "Contáctanos hoy mismo para una demostración personalizada",
+    "cta": "Solicitar información"
+  },
+  "footer": {
+    "copyright": "© 2025 MatchFloor. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos y Condiciones"
+  }
+} 

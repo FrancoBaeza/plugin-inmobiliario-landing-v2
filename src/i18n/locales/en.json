@@ -1,0 +1,65 @@
+{
+  "header": {
+    "title": "Revolutionize Your Real Estate Management",
+    "subtitle": "Optimize agent relationships and boost your results.",
+    "cta": "Request Demo"
+  },
+  "nav": {
+    "home": "Home",
+    "whatWeDo": "What We Do",
+    "benefits": "Benefits",
+    "demo": "Demo",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
+  "whatWeDo": {
+    "title": "What We Do",
+    "description": "MatchFloor is a plugin for real estate agencies that optimizes property visit management. Our solution allows real estate agents to efficiently coordinate visits, reduce downtime, and improve the customer experience.",
+    "step1": "Easy integration with your website",
+    "step2": "Real-time appointment management",
+    "step3": "Visit and results tracking",
+    "step4": "Agent performance analysis"
+  },
+  "benefits": {
+    "title": "Benefits",
+    "efficiency": {
+      "title": "Increased Efficiency 🏡",
+      "description": "Reduce time spent coordinating visits by 40%"
+    },
+    "experience": {
+      "title": "Better Customer Experience 🤝",
+      "description": "Intuitive and frictionless visit booking process"
+    },
+    "integration": {
+      "title": "Easy Integration with Your Site 🔌",
+      "description": "Implementation in less than 24 hours without disruptions"
+    },
+    "analytics": {
+      "title": "Advanced Analytics 📊",
+      "description": "Real-time data on your agents' performance"
+    }
+  },
+  "demo": {
+    "title": "See How It Works",
+    "description": "Discover how MatchFloor can transform visit management in your real estate agency"
+  },
+  "pricing": {
+    "title": "Plans & Pricing",
+    "description": "Choose the plan that best suits your real estate agency's needs",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "save": "Save",
+    "features": "Features",
+    "cta": "Get Started"
+  },
+  "contact": {
+    "title": "Ready to revolutionize your real estate agency?",
+    "description": "Contact us today for a personalized demonstration",
+    "cta": "Request Information"
+  },
+  "footer": {
+    "copyright": "© 2025 MatchFloor. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  }
+} 
