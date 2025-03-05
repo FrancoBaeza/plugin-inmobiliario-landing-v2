@@ -13,42 +13,42 @@ import { subscriptionService } from '../services/subscriptionService';
 const PLANS: Plan[] = [
   {
     id: 'basic',
-    name: 'Basic',
-    price: 29.99,
+    name: 'Básico',
+    price: 49,
     billingCycle: 'monthly',
     features: [
-      'Up to 50 property listings',
-      'Basic analytics',
-      'Email support',
-      'Standard lead capture forms'
+      'Hasta 5 agentes',
+      'Gestión de citas',
+      'Panel de control básico',
+      'Soporte por email'
     ]
   },
   {
-    id: 'professional',
-    name: 'Professional',
-    price: 59.99,
+    id: 'pro',
+    name: 'Profesional',
+    price: 99,
     billingCycle: 'monthly',
     features: [
-      'Up to 200 property listings',
-      'Advanced analytics',
-      'Priority email & phone support',
-      'Custom lead capture forms',
-      'Social media integration'
+      'Hasta 15 agentes',
+      'Gestión de citas avanzada',
+      'Analítica detallada',
+      'Integraciones con CRM',
+      'Soporte prioritario'
     ],
     recommended: true
   },
   {
     id: 'enterprise',
-    name: 'Enterprise',
-    price: 99.99,
+    name: 'Empresarial',
+    price: 199,
     billingCycle: 'monthly',
     features: [
-      'Unlimited property listings',
-      'Premium analytics with market insights',
-      '24/7 dedicated support',
-      'Advanced CRM integration',
-      'Custom branding',
-      'API access'
+      'Agentes ilimitados',
+      'Funciones personalizadas',
+      'API completa',
+      'Gestor de cuenta dedicado',
+      'Soporte 24/7',
+      'Implementación guiada'
     ]
   }
 ];
@@ -91,13 +91,23 @@ export const SubscriptionProvider: React.FC<{ children: React.ReactNode }> = ({ 
     const queryParams = new URLSearchParams(location.search);
     const planId = queryParams.get('plan');
     
+    console.log('Plan ID from URL:', planId);
+    
     if (planId) {
       const plan = PLANS.find(p => p.id === planId);
+      console.log('Found plan:', plan);
       if (plan) {
         setSelectedPlan(plan);
+      } else {
+        console.error('Plan not found for ID:', planId);
       }
     }
   }, [location.search]);
+
+  // Log when selected plan changes
+  useEffect(() => {
+    console.log('Selected plan updated:', selectedPlan);
+  }, [selectedPlan]);
 
   const updateUserInfo = (info: Partial<UserInfo>) => {
     setUserInfo(prev => ({ ...prev, ...info }));
