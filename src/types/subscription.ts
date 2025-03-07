@@ -12,14 +12,18 @@ export interface AgencyDetails {
   website?: string;
 }
 
-export type BillingCycle = 'monthly' | 'yearly';
+export type PeriodPlan = 'monthly' | 'annually';
+export type CurrencyPlan = 'eur' | 'usd';
 
 export interface Plan {
-  id: string;
+  id: number;
   name: string;
+  description: string;
+  maxAPI: number;
   price: number;
-  billingCycle: BillingCycle;
-  features: string[];
+  periodPlan: PeriodPlan;
+  currencyPlan: CurrencyPlan;
+  features?: string[];
   recommended?: boolean;
 }
 
@@ -80,13 +84,23 @@ export interface VerificationData {
 }
 
 export interface VerificationResponse {
-  success: boolean;
-  message: string;
-  token?: string;
+  checkoutUrl: string;
 }
 
 export enum PasswordStrength {
   WEAK = 'weak',
   MEDIUM = 'medium',
   STRONG = 'strong'
+}
+
+export interface SubscriptionData {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+  planId: string;
+  agencyName: string;
+  address?: string;
+  phone?: string;
+  website?: string;
 } 

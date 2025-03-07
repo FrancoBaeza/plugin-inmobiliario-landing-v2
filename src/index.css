@@ -47,16 +47,40 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f9f9f9;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-primary);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Special styling for language selector buttons */
+.language-selector button {
+  background-color: #f9f9f9;
+  color: #333;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+}
+
+.language-selector button.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Password visibility toggle button */
+.password-toggle-button {
+  background-color: transparent;
+  border: none;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: light) {

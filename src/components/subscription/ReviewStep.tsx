@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { useSubscription } from '../../context/SubscriptionContext';
+import { useSubscriptionStore } from '../../stores/useSubscriptionStore';
 
 const ReviewStep: React.FC = () => {
     const { t } = useTranslation();
-    const {
-        userInfo,
-        agencyDetails,
-        selectedPlan,
-        prevStep,
-        submitSubscription,
-        isSubmitting,
-    } = useSubscription();
+    
+    // Get state and actions from Zustand store
+    const userInfo = useSubscriptionStore(state => state.userInfo);
+    const agencyDetails = useSubscriptionStore(state => state.agencyDetails);
+    const selectedPlan = useSubscriptionStore(state => state.selectedPlan);
+    const prevStep = useSubscriptionStore(state => state.prevStep);
+    const submitSubscription = useSubscriptionStore(state => state.submitSubscription);
+    const isSubmitting = useSubscriptionStore(state => state.isSubmitting);
 
     const [error, setError] = useState('');
+
+    console.log("selectedPlan:", selectedPlan )
 
     const handleSubmit = async () => {
         if (!selectedPlan) {
@@ -24,6 +26,16 @@ const ReviewStep: React.FC = () => {
 
         setError('');
         await submitSubscription();
+    };
+
+    // Format currency based on the selected plan's currency
+    const formatCurrency = (amount: number, currency: string = 'EUR') => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        }).format(amount);
     };
 
     return (
@@ -126,32 +138,40 @@ const ReviewStep: React.FC = () => {
                                 {t('subscription.review.billingCycle')}
                             </p>
                             <p className="text-sm font-medium">
-                                {selectedPlan.billingCycle === 'monthly'
-                                    ? t('subscription.planSelection.monthly')
-                                    : t('subscription.planSelection.yearly')}
+                                {selectedPlan.periodPlan === 'monthly'
+                                    ? t('pricing.monthly')
+                                    : t('pricing.annual')}
                             </p>
 
                             <p className="text-sm text-gray-500">
                                 {t('subscription.review.price')}
                             </p>
                             <p className="text-sm font-medium">
-                                ${selectedPlan.price.toFixed(2)}
-                                {selectedPlan.billingCycle === 'monthly'
-                                    ? t('subscription.planSelection.perMonth')
-                                    : t('subscription.planSelection.perYear')}
+                                {formatCurrency(selectedPlan.price, selectedPlan.currencyPlan)}
+                                {selectedPlan.periodPlan === 'monthly'
+                                    ? ' / ' + t('pricing.monthly').toLowerCase()
+                                    : ' / ' + t('pricing.annual').toLowerCase()}
                             </p>
                         </div>
 
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             <p className="text-sm text-gray-500 mb-2">
                                 {t('subscription.review.features')}
                             </p>
                             <ul className="space-y-1 pl-5 list-disc text-sm text-gray-600">
-                                {selectedPlan.features.map((feature, index) => (
-                                    <li key={index}>{feature}</li>
-                                ))}
+                                {selectedPlan.features && selectedPlan.features.length > 0 ? (
+                                    selectedPlan.features.map((feature, index) => (
+                                        <li key={index}>{feature}</li>
+                                    ))
+                                ) : (
+                                    // Fallback to translation features if not provided in the plan
+                                    Object.values(t(`pricing.plans.${selectedPlan.id}.features`, { returnObjects: true }) as Record<string, string>)
+                                        .map((feature: string, index: number) => (
+                                            <li key={index}>{feature}</li>
+                                        ))
+                                )}
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
                 )}
 

@@ -1,36 +1,65 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useAnimateOnScroll } from '../hooks/useAnimateOnScroll';
-import { usePricingData, PricingPlan } from '../hooks/usePricingData';
+import { useSubscriptionStore, usePlans } from '../stores/useSubscriptionStore';
+import { Plan } from '../types/subscription';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
     const { t, i18n } = useTranslation();
     const sectionRef = useRef<HTMLDivElement>(null);
     const isVisible = useAnimateOnScroll(sectionRef);
     const [isAnnual, setIsAnnual] = useState(false);
-    const { plans, loading, error } = usePricingData();
+    const navigate = useNavigate();
+    
+    // Get plans and loading state from Zustand store
+    const plans = usePlans();
+    const plansLoading = useSubscriptionStore(state => state.plansLoading);
+    const plansError = useSubscriptionStore(state => state.plansError);
+    const fetchPlans = useSubscriptionStore(state => state.fetchPlans);
+    const updateSelectedPlan = useSubscriptionStore(state => state.updateSelectedPlan);
+    
+    // Fetch plans when component mounts
+    useEffect(() => {
+        fetchPlans();
+    }, [fetchPlans]);
 
-    const formatCurrency = (amount: number, currency: string) => {
-        if (!currency) {
-            currency = 'USD';
-        }
+    const formatCurrency = (amount: number, currency: string = 'EUR') => {
         return new Intl.NumberFormat(
             i18n.language === 'es' ? 'es-ES' : 'en-US',
             {
                 style: 'currency',
-                currency: currency,
+                currency: currency.toUpperCase(),
                 minimumFractionDigits: 0,
             },
         ).format(amount);
     };
 
-    const calculateSavings = (plan: PricingPlan) => {
-        const monthlyCost = plan.monthlyPrice * 12;
-        const annualCost = plan.annualPrice;
+    const calculateSavings = (plan: Plan) => {
+        // For annual plans, assume 20% discount
+        const monthlyCost = plan.price * 12;
+        const annualCost = monthlyCost * 0.8;
         const savings = ((monthlyCost - annualCost) / monthlyCost) * 100;
         return Math.round(savings);
     };
+
+    // Handle plan selection
+    const handleSelectPlan = (plan: Plan) => {
+        // Update the selected plan in the store
+        updateSelectedPlan(plan);
+        
+        // Use react router to navigate to the subscription page
+        navigate('/subscribe');
+    };
+
+    // Filter plans based on selected billing cycle
+    const filteredPlans = plans.filter(plan => 
+        isAnnual ? plan.periodPlan === 'annually' : plan.periodPlan === 'monthly'
+    );
+
+    // If no plans match the selected period, show all plans
+    const displayPlans = filteredPlans.length > 0 ? filteredPlans : plans;
 
     return (
         <section
@@ -85,18 +114,18 @@ const Pricing = () => {
                     </div>
                 </motion.div>
 
-                {loading ? (
+                {plansLoading ? (
                     <div className="text-center py-12">
                         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mx-auto"></div>
                         <p className="mt-4 text-gray-600">Cargando planes...</p>
                     </div>
-                ) : error ? (
+                ) : plansError ? (
                     <div className="text-center py-12 text-red-500">
-                        <p>{error}</p>
+                        <p>{plansError}</p>
                     </div>
                 ) : (
                     <div className="grid md:grid-cols-3 gap-8">
-                        {plans.map((plan: PricingPlan, index: number) => (
+                        {displayPlans.map((plan: Plan, index: number) => (
                             <motion.div
                                 key={plan.id}
                                 initial={{ opacity: 0, y: 20 }}
@@ -110,12 +139,12 @@ const Pricing = () => {
                                     delay: 0.2 + index * 0.1,
                                 }}
                                 className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow ${
-                                    plan.isPopular
+                                    plan.recommended
                                         ? 'ring-2 ring-secondary'
                                         : ''
                                 }`}
                             >
-                                {plan.isPopular && (
+                                {plan.recommended && (
                                     <div className="bg-secondary text-primary text-center py-2 font-semibold text-sm">
                                         Más popular
                                     </div>
@@ -125,33 +154,23 @@ const Pricing = () => {
                                         {plan.name}
                                     </h3>
                                     <p className="text-gray-600 mb-6 h-12">
-                                        {plan.description}
+                                        {plan.description || t(`pricing.plans.${plan.id}.description`)}
                                     </p>
                                     <div className="mb-6">
                                         <div className="text-3xl font-bold text-primary">
                                             {formatCurrency(
-                                                isAnnual
-                                                    ? plan.annualPrice / 12
-                                                    : plan.monthlyPrice,
-                                                plan.currency,
+                                                plan.price,
+                                                plan.currencyPlan
                                             )}
                                             <span className="text-sm font-normal text-gray-500">
                                                 /
-                                                {t(
-                                                    'pricing.monthly',
-                                                ).toLowerCase()}
+                                                {plan.periodPlan === 'monthly' 
+                                                    ? t('pricing.monthly').toLowerCase() 
+                                                    : t('pricing.annual').toLowerCase()}
                                             </span>
                                         </div>
-                                        {isAnnual && (
+                                        {plan.periodPlan === 'annually' && (
                                             <div className="text-sm text-gray-500 mt-1">
-                                                {formatCurrency(
-                                                    plan.annualPrice,
-                                                    plan.currency,
-                                                )}
-                                                /
-                                                {t(
-                                                    'pricing.annual',
-                                                ).toLowerCase()}{' '}
                                                 <span className="text-green-500 font-medium">
                                                     ({t('pricing.save')}{' '}
                                                     {calculateSavings(plan)}%)
@@ -164,15 +183,37 @@ const Pricing = () => {
                                             {t('pricing.features')}:
                                         </div>
                                         <ul className="space-y-2">
-                                            {plan?.features?.map(
-                                                (
-                                                    feature: string,
-                                                    idx: number,
-                                                ) => (
-                                                    <li
-                                                        key={idx}
-                                                        className="flex items-start"
-                                                    >
+                                            {plan.features && plan.features.length > 0 ? (
+                                                plan.features.map(
+                                                    (feature: string, idx: number) => (
+                                                        <li
+                                                            key={idx}
+                                                            className="flex items-start"
+                                                        >
+                                                            <svg
+                                                                className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={2}
+                                                                    d="M5 13l4 4L19 7"
+                                                                />
+                                                            </svg>
+                                                            <span className="text-gray-600">
+                                                                {feature}
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                )
+                                            ) : (
+                                                // If no features provided, show default features from translations
+                                                <>
+                                                    <li className="flex items-start">
                                                         <svg
                                                             className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
                                                             fill="none"
@@ -188,23 +229,42 @@ const Pricing = () => {
                                                             />
                                                         </svg>
                                                         <span className="text-gray-600">
-                                                            {feature}
+                                                            {t(`pricing.plans.${plan.id}.feature1`, {defaultValue: `${plan.maxAPI} API calls per month`})}
                                                         </span>
                                                     </li>
-                                                ),
+                                                    <li className="flex items-start">
+                                                        <svg
+                                                            className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M5 13l4 4L19 7"
+                                                            />
+                                                        </svg>
+                                                        <span className="text-gray-600">
+                                                            {t(`pricing.plans.${plan.id}.feature2`, {defaultValue: 'Email support'})}
+                                                        </span>
+                                                    </li>
+                                                </>
                                             )}
                                         </ul>
                                     </div>
-                                    <a
-                                        href={`/subscribe?plan=${plan.id}`}
+                                    <button
+                                        onClick={() => handleSelectPlan(plan)}
                                         className={`w-full block text-center py-3 px-4 rounded-lg font-medium transition-colors ${
-                                            plan.isPopular
+                                            plan.recommended
                                                 ? 'bg-secondary text-primary hover:bg-secondary/90'
                                                 : 'bg-primary text-white hover:bg-primary/90'
                                         }`}
                                     >
                                         {t('pricing.cta')}
-                                    </a>
+                                    </button>
                                 </div>
                             </motion.div>
                         ))}

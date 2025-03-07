@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useSubscription } from '../../context/SubscriptionContext';
+import { useSubscriptionStore } from '../../stores/useSubscriptionStore';
 
 // Import step components
 import BasicInfoStep from './BasicInfoStep';
@@ -12,7 +12,7 @@ import VerificationStep from './VerificationStep';
 // Progress indicator component
 const ProgressIndicator: React.FC = () => {
     const { t } = useTranslation();
-    const { currentStep } = useSubscription();
+    const currentStep = useSubscriptionStore(state => state.currentStep);
 
     const steps = [
         { id: 1, label: t('subscription.steps.basicInfo') },
@@ -65,7 +65,8 @@ const ProgressIndicator: React.FC = () => {
 };
 
 const SubscriptionFlow: React.FC = () => {
-    const { currentStep, showVerification } = useSubscription();
+    const currentStep = useSubscriptionStore(state => state.currentStep);
+    const showVerification = useSubscriptionStore(state => state.showVerification);
 
     // Render the current step
     const renderStep = () => {

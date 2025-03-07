@@ -50,7 +50,30 @@
     "annual": "Anual",
     "save": "Ahorra",
     "features": "Características",
-    "cta": "Comenzar ahora"
+    "cta": "Comenzar ahora",
+    "plans": {
+      "1": {
+        "description": "Ideal para pequeñas inmobiliarias",
+        "feature1": "Hasta 100 llamadas API por mes",
+        "feature2": "Soporte por email",
+        "feature3": "Panel de control básico"
+      },
+      "2": {
+        "description": "Perfecto para agencias en crecimiento",
+        "feature1": "Hasta 500 llamadas API por mes",
+        "feature2": "Soporte prioritario por email",
+        "feature3": "Panel de control avanzado",
+        "feature4": "Integraciones con CRM"
+      },
+      "3": {
+        "description": "Solución completa para grandes inmobiliarias",
+        "feature1": "Hasta 2000 llamadas API por mes",
+        "feature2": "Soporte 24/7 por teléfono y email",
+        "feature3": "Integraciones personalizadas",
+        "feature4": "Gestor de cuenta dedicado",
+        "feature5": "Solución de marca blanca"
+      }
+    }
   },
   "contact": {
     "title": "¿Listo para revolucionar tu inmobiliaria?",
@@ -67,6 +90,7 @@
     "pageDescription": "Únete a MatchFloor y transforma tu negocio inmobiliario con nuestra potente plataforma.",
     "pageHeading": "Únete a MatchFloor Hoy",
     "pageSubheading": "Completa los pasos a continuación para crear tu cuenta y comenzar a usar nuestra plataforma.",
+    "redirecting": "Redirigiendo a la sección de precios...",
     
     "steps": {
       "basicInfo": "Información Básica",

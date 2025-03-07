@@ -50,7 +50,30 @@
     "annual": "Annual",
     "save": "Save",
     "features": "Features",
-    "cta": "Get Started"
+    "cta": "Get Started",
+    "plans": {
+      "1": {
+        "description": "Ideal for small real estate agencies",
+        "feature1": "Up to 100 API calls per month",
+        "feature2": "Email support",
+        "feature3": "Basic analytics dashboard"
+      },
+      "2": {
+        "description": "Perfect for growing agencies",
+        "feature1": "Up to 500 API calls per month",
+        "feature2": "Priority email support",
+        "feature3": "Advanced analytics dashboard",
+        "feature4": "CRM integrations"
+      },
+      "3": {
+        "description": "Complete solution for large agencies",
+        "feature1": "Up to 2000 API calls per month",
+        "feature2": "24/7 phone and email support",
+        "feature3": "Custom integrations",
+        "feature4": "Dedicated account manager",
+        "feature5": "White-label solution"
+      }
+    }
   },
   "contact": {
     "title": "Ready to revolutionize your real estate agency?",
@@ -67,6 +90,7 @@
     "pageDescription": "Join MatchFloor and transform your real estate business with our powerful platform.",
     "pageHeading": "Join MatchFloor Today",
     "pageSubheading": "Complete the steps below to create your account and start using our platform.",
+    "redirecting": "Redirecting to pricing section...",
     
     "steps": {
       "basicInfo": "Basic Info",

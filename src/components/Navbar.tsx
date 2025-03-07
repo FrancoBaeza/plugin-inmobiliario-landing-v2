@@ -67,12 +67,12 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4 language-selector">
           <button
             onClick={() => changeLanguage('es')}
             className={`px-2 py-1 rounded ${
               i18n.language === 'es'
-                ? 'bg-primary text-white'
+                ? 'active'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
@@ -82,7 +82,7 @@ const Navbar = () => {
             onClick={() => changeLanguage('en')}
             className={`px-2 py-1 rounded ${
               i18n.language === 'en'
-                ? 'bg-primary text-white'
+                ? 'active'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
@@ -141,7 +141,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <div className="flex space-x-4 pt-2 border-t border-gray-200">
+            <div className="flex space-x-4 pt-2 border-t border-gray-200 language-selector">
               <button
                 onClick={() => {
                   changeLanguage('es');
@@ -149,7 +149,7 @@ const Navbar = () => {
                 }}
                 className={`px-2 py-1 rounded ${
                   i18n.language === 'es'
-                    ? 'bg-primary text-white'
+                    ? 'active'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
@@ -162,7 +162,7 @@ const Navbar = () => {
                 }}
                 className={`px-2 py-1 rounded ${
                   i18n.language === 'en'
-                    ? 'bg-primary text-white'
+                    ? 'active'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >

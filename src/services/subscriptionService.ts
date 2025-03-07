@@ -1,33 +1,38 @@
 import { apiClient } from './apiClient';
 
 interface SubscriptionPayload {
-    userInfo: {
-        name: string;
-        email: string;
-    };
-    agencyDetails: {
-        agencyName: string;
-        address?: string;
-        phone?: string;
-        website?: string;
-    };
-    plan: {
-        id: string;
-        name: string;
-        price: number;
-        billingCycle: string;
-    };
+    // userInfo: {
+    //     name: string;
+    //     email: string;
+    // };
+    // agencyDetails: {
+    //     agencyName: string;
+    //     address?: string;
+    //     phone?: string;
+    //     website?: string;
+    // };
+    // plan: {
+    //     id: string;
+    //     name: string;
+    //     price: number;
+    //     billingCycle: string;
+    // };
+    email: string;
+    password: string;
+    passwordConfirmation: string;
+    name: string;
+    planId: number;
 }
 
 export const subscriptionService = {
     /**
-     * Create a new subscription
+     * Create a new subscription/ Registers a new agency
      * @param data Subscription data
      * @returns Promise with the created subscription
      */
     createSubscription: async (data: SubscriptionPayload) => {
         try {
-            const response = await apiClient.post('/subscriptions', data);
+            const response = await apiClient.post('/agencies/register', data);
             return response.data;
         } catch (error) {
             console.error('Error creating subscription:', error);
@@ -55,29 +60,12 @@ export const subscriptionService = {
     },
 
     /**
-     * Send a verification code to the user's email
-     * @param email User's email
-     * @returns Promise with send result
-     */
-    sendVerificationCode: async (email: string) => {
-        try {
-            const response = await apiClient.post('/send-verification', {
-                email,
-            });
-            return response.data;
-        } catch (error) {
-            console.error('Error sending verification code:', error);
-            throw error;
-        }
-    },
-
-    /**
      * Get available subscription plans
      * @returns Promise with plans data
      */
     getPlans: async () => {
         try {
-            const response = await apiClient.get('/subscription-plans');
+            const response = await apiClient.get('/plans/public');
             return response.data;
         } catch (error) {
             console.error('Error fetching subscription plans:', error);

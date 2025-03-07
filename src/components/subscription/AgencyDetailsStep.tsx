@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { useSubscription } from '../../context/SubscriptionContext';
+import { useSubscriptionStore } from '../../stores/useSubscriptionStore';
 
 const AgencyDetailsStep: React.FC = () => {
   const { t } = useTranslation();
-  const { agencyDetails, updateAgencyDetails, nextStep, prevStep } = useSubscription();
+  
+  // Get state and actions from Zustand store
+  const agencyDetails = useSubscriptionStore(state => state.agencyDetails);
+  const updateAgencyDetails = useSubscriptionStore(state => state.updateAgencyDetails);
+  const nextStep = useSubscriptionStore(state => state.nextStep);
+  const prevStep = useSubscriptionStore(state => state.prevStep);
   
   const [errors, setErrors] = useState({
     agencyName: ''
@@ -22,13 +27,11 @@ const AgencyDetailsStep: React.FC = () => {
   };
   
   const validateForm = (): boolean => {
-    const newErrors = {
-      agencyName: ''
-    };
-    
     let isValid = true;
+    const newErrors = { ...errors };
     
-    if (!agencyDetails.agencyName.trim()) {
+    // Validate agency name
+    if (!agencyDetails.agencyName) {
       newErrors.agencyName = t('subscription.errors.agencyNameRequired');
       isValid = false;
     }
@@ -57,10 +60,11 @@ const AgencyDetailsStep: React.FC = () => {
         {t('subscription.agencyDetails.title')}
       </h2>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Agency Name field */}
         <div>
           <label htmlFor="agencyName" className="block text-sm font-medium text-gray-700 mb-1">
-            {t('subscription.agencyDetails.agencyName')} *
+            {t('subscription.agencyDetails.agencyName')} <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -68,16 +72,15 @@ const AgencyDetailsStep: React.FC = () => {
             name="agencyName"
             value={agencyDetails.agencyName}
             onChange={handleChange}
+            placeholder={t('subscription.agencyDetails.agencyNamePlaceholder')}
             className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none ${
               errors.agencyName ? 'border-red-500' : 'border-gray-300'
             }`}
-            placeholder={t('subscription.agencyDetails.agencyNamePlaceholder')}
           />
-          {errors.agencyName && (
-            <p className="mt-1 text-sm text-red-500">{errors.agencyName}</p>
-          )}
+          {errors.agencyName && <p className="mt-1 text-sm text-red-500">{errors.agencyName}</p>}
         </div>
         
+        {/* Address field */}
         <div>
           <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
             {t('subscription.agencyDetails.address')}
@@ -88,11 +91,12 @@ const AgencyDetailsStep: React.FC = () => {
             name="address"
             value={agencyDetails.address || ''}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder={t('subscription.agencyDetails.addressPlaceholder')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
           />
         </div>
         
+        {/* Phone field */}
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
             {t('subscription.agencyDetails.phone')}
@@ -103,11 +107,12 @@ const AgencyDetailsStep: React.FC = () => {
             name="phone"
             value={agencyDetails.phone || ''}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder={t('subscription.agencyDetails.phonePlaceholder')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
           />
         </div>
         
+        {/* Website field */}
         <div>
           <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
             {t('subscription.agencyDetails.website')}
@@ -118,8 +123,8 @@ const AgencyDetailsStep: React.FC = () => {
             name="website"
             value={agencyDetails.website || ''}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder={t('subscription.agencyDetails.websitePlaceholder')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
           />
         </div>
         
